@@ -28,6 +28,9 @@ local.properties
 *.iml
 *.iws
 out/
+/.idea/workspace.xml
+#/.idea/*.xml
+#!/.idea/codeStyleSettings.xml
 
 # Gradle
 .gradle/
