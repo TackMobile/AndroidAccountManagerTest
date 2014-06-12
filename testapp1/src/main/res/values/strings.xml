@@ -2,7 +2,8 @@
 <resources>
 
     <string name="app_name">TestApplication1</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
+    <string name="greeting">Hello %1$s!</string>
+    <string name="world">World</string>
+    <string name="signin">Signin</string>
 
 </resources>

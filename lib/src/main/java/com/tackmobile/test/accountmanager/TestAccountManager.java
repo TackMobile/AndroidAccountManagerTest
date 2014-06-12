@@ -47,7 +47,6 @@ public class TestAccountManager extends Service {
                                        String authTokenType, String[] requiredFeatures,
                                        Bundle options) throws NetworkErrorException {
       final Intent intent = new Intent(mContext, TestAddAccountActivity.class);
-      intent.setAction("com.openclass.authenticator.SIGNIN");
       intent.putExtra(AccountManager.KEY_ACCOUNT_AUTHENTICATOR_RESPONSE, response);
       final Bundle bundle = new Bundle();
       bundle.putParcelable(AccountManager.KEY_INTENT, intent);
