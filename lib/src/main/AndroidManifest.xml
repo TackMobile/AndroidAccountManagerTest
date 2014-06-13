@@ -13,10 +13,11 @@
     android:label="@string/app_name">
 
     <activity
+        android:exported="true"
         android:name=".TestAddAccountActivity"/>
 
     <service
-        android:name=".TestAccountManager"
+        android:name="com.tackmobile.test.accountmanager.TestAccountManager"
         android:exported="true">
       <intent-filter>
         <action android:name="android.accounts.AccountAuthenticator"/>

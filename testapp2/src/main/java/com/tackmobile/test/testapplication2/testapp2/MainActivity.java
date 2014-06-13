@@ -3,23 +3,45 @@ package com.tackmobile.test.testapplication2.testapp2;
 import android.accounts.AccountManager;
 import android.accounts.AccountManagerCallback;
 import android.accounts.AccountManagerFuture;
+import android.accounts.Account;
+import android.accounts.AuthenticatorException;
+import android.accounts.OperationCanceledException;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
+
+import java.io.IOException;
 
 public class MainActivity extends Activity {
 
-  private static final String ACCOUNT_TYPE = "testAccountType";
+  final private static String ACCOUNT_TYPE = "com.tackmobile.account";
+  final private static String AUTH_TOKEN_TYPE = "com.tackmobile";
 
-  private static final String AUTH_TOKEN_TYPE = "testTokenType";
-
+  private TextView mAccountsText;
+  private String mSelectedAccount;
   private AccountManager mAccountManager;
 
   private AccountManagerCallback<Bundle> mAddAccountCallback = new AccountManagerCallback<Bundle>() {
     @Override public void run(AccountManagerFuture<Bundle> future) {
+      try {
+        mSelectedAccount =  future.getResult().getString(AccountManager.KEY_ACCOUNT_NAME);
+        updateAccounts();
 
+        MainActivity.this.runOnUiThread(new Runnable() {
+          @Override
+          public void run() {
+            updateAccounts();
+          }
+        });
+      } catch (OperationCanceledException e) {
+        e.printStackTrace();
+      } catch (AuthenticatorException e) {
+        e.printStackTrace();
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
     }
   };
 
@@ -27,7 +49,6 @@ public class MainActivity extends Activity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
-
     mAccountManager = AccountManager.get(this);
 
     findViewById(R.id.add_account_button).setOnClickListener(new View.OnClickListener() {
@@ -53,23 +74,24 @@ public class MainActivity extends Activity {
 
       }
     });
+
+    mAccountManager = (AccountManager) this.getSystemService(this.ACCOUNT_SERVICE);
+    mAccountsText = (TextView) this.findViewById(R.id.accounts_text);
+    updateAccounts();
   }
 
-  @Override
-  public boolean onCreateOptionsMenu(Menu menu) {
-    getMenuInflater().inflate(R.menu.main, menu);
-    return true;
-  }
+  private void updateAccounts(){
+    final Account[] accounts = mAccountManager.getAccountsByType(ACCOUNT_TYPE);
 
-  @Override
-  public boolean onOptionsItemSelected(MenuItem item) {
-    int id = item.getItemId();
-    if (id == R.id.action_settings) {
-
-      return true;
+    String accountsText = "";
+    for(Account account : accounts) {
+      accountsText += account.name + " ";
+      if(account.name.equals(mSelectedAccount)) {
+        accountsText += "(x)";
+      }
+      accountsText += ",";
     }
-    return super.onOptionsItemSelected(item);
+
+    mAccountsText.setText(accountsText);
   }
-
-
 }

@@ -52,6 +52,13 @@
       android:layout_weight="1"
       android:minHeight="200dp"/>
 
+    <TextView android:id="@+id/accounts_text"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="usernames"/>
+
   </LinearLayout>
+
+
 
 </RelativeLayout>

@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">TestApplication1</string>
-    <string name="greeting">Hello %1$s!</string>
-    <string name="world">World</string>
-    <string name="signin">Signin</string>
+  <string name="app_name">TestApplication1</string>
+  <string name="signin">Signin</string>
 
 </resources>

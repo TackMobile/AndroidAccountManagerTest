@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">TestAccountManager</string>
+  <string name="tack_mobile">Tack Mobile</string>
+  <string name="app_name">Tack Mobile Authenticator</string>
 </resources>
