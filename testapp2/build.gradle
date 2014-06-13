@@ -4,7 +4,7 @@ android {
   compileSdkVersion 19
   buildToolsVersion '19.1.0'
   defaultConfig {
-    packageName 'com.tackmobile.test.testapplication2.testapp2'
+    applicationId 'com.tackmobile.test.testapplication2.testapp2'
     minSdkVersion 15
     targetSdkVersion 19
     versionCode 1
