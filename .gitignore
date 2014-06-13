@@ -29,6 +29,7 @@ local.properties
 *.iws
 out/
 /.idea/workspace.xml
+/.idea/misc.xml
 #/.idea/*.xml
 #!/.idea/codeStyleSettings.xml
 
