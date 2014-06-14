@@ -23,16 +23,20 @@
       </intent-filter>
     </activity>
 
-    <service
-      android:name="com.tackmobile.test.accountmanager.TestAccountManager"
-      android:exported="true">
-      <intent-filter>
-        <action android:name="android.accounts.AccountAuthenticator" />
-      </intent-filter>
+    <provider android:name=".TestApplication2Provider"
+              android:authorities="com.tackmobile.content.app2"
+              android:syncable="true"
+              android:label="@string/app_name" />
 
-      <meta-data
-        android:name="android.accounts.AccountAuthenticator"
-        android:resource="@xml/authenticator" />
+    <service
+        android:name=".SyncService"
+        android:exported="true"
+        android:process=":sync">
+      <intent-filter>
+        <action android:name="android.content.SyncAdapter"/>
+      </intent-filter>
+      <meta-data android:name="android.content.SyncAdapter"
+                 android:resource="@xml/syncadapter" />
     </service>
 
   </application>
